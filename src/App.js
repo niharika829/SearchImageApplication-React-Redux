@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Demo from "./pages/Demo";
 import Header from "./pages/Header";
 import RandomImageCards from "./pages/RandomImageCards";
 import { getImages } from "./redux/reducers/randomImages";
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <>
+      {/* <Demo /> */}
       <Header />
       <RandomImageCards />
     </>

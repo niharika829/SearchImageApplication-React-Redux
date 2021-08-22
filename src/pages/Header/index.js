@@ -12,8 +12,21 @@ export default function Header() {
   const [keyword, setKeyword] = useState("");
   const [displaySearchModal, setDisplaySearchModal] = useState(false);
   const action = (val) => setKeyword(val);
-  const searchKeyword = debounce(action, 300);
 
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      const context = this;
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        timeout = null;
+        func.apply(context, args);
+      }, wait);
+    };
+  }
+
+  // const searchKeyword = debounce(action, 300);
+  const searchKeyword = React.useCallback(debounce(action, 400), []);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(searchImagesByKeyword({ keyword }));
